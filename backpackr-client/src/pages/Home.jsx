@@ -1,41 +1,20 @@
 import React, { useState, useEffect } from "react";
 import heroImg from "../assets/hero2.jpeg";
+import AlpineImg from "../assets/itineraries/Alpine.jpg";
+import BaliImg from "../assets/itineraries/Bali.jpg";
+import LehLadakhImg from "../assets/itineraries/leh-ladakh.jpg";
+import MunnarImg from "../assets/itineraries/Munnar.jpg";
+import BackpackImg from "../assets/travel-gear/backpack.avif";
+import TentImg from "../assets/travel-gear/tent.jpeg";
+import WaterBottleImg from "../assets/travel-gear/water_bottle.jpg";
+import TravelKitImg from "../assets/travel-gear/travel-kit.jpg";
+import WhyBackpackrVideo from "../assets/why_backpackr.mp4";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
-const Navbar = ({ isScrolled }) => (
-  <nav
-    className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white shadow-md" : "bg-transparent"
-    }`}
-  >
-    <div className="px-6 py-4 flex items-center justify-between">
-      {/* Left Logo */}
-      <div className="flex items-center gap-2">
-        <span className="text-2xl">🎒</span>
-        <span
-          className={`text-xl font-bold transition-colors duration-300 ${
-            isScrolled ? "text-blue-700" : "text-white"
-          }`}
-        >
-          Backpackr
-        </span>
-      </div>
-      {/* Right Links */}
-      <div className="flex items-center gap-6">
-        <a href="#" className={`font-medium transition-colors duration-300 ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"}`}>Home</a>
-        <a href="#" className={`font-medium transition-colors duration-300 ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"}`}>Trips</a>
-        <a href="#" className={`font-medium transition-colors duration-300 ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"}`}>Gear Shop</a>
-        <a href="#" className={`font-medium transition-colors duration-300 ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"}`}>Blog</a>
-        <a href="#" className={`font-medium transition-colors duration-300 ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"}`}>About</a>
-        <a href="#" className={`font-medium transition-colors duration-300 ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"}`}>Contact</a>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-semibold ml-2 shadow-lg">
-          Login / Register
-        </button>
-      </div>
-    </div>
-  </nav>
-);
-
-const HeroSection = () => (
+const HeroSection = () => {
+  const navigate = useNavigate();
+  return (
     <section 
         className="relative w-full h-[80vh] flex items-center justify-center text-center"
         style={{ backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center" }}
@@ -49,18 +28,20 @@ const HeroSection = () => (
                 Discover breathtaking destinations, curated trip plans, and essential travel gear – all in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded shadow-lg text-lg transition">Explore Trips</button>
+                <button onClick={() => navigate("/trips")}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded shadow-lg text-lg transition">Explore Trips</button>
                 <button className="bg-white/90 hover:bg-white text-blue-700 font-bold py-3 px-8 rounded shadow-lg text-lg transition">Visit Gear Shop</button>
             </div>
         </div>
     </section>
-);
+  );
+};
 
 
 const itineraries = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    image: AlpineImg,
     name: "Alpine Escape",
     days: 7,
     rating: 4.8,
@@ -68,7 +49,7 @@ const itineraries = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    image: BaliImg,
     name: "Bali Bliss",
     days: 5,
     rating: 4.7,
@@ -76,19 +57,19 @@ const itineraries = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80",
-    name: "Patagonia Trek",
-    days: 10,
+    image: LehLadakhImg,
+    name: "Leh-Ladakh Adventure",
+    days: 8,
     rating: 4.9,
-    overview: "Trek through Patagonia’s wild landscapes, glaciers, and mountain peaks.",
+    overview: "Journey through the rugged terrains of Leh-Ladakh, experience high-altitude passes, monasteries, and breathtaking landscapes.",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1462129487128-512a0e9150c7?auto=format&fit=crop&w=600&q=80",
-    name: "Tokyo Explorer",
-    days: 4,
+    image: MunnarImg,
+    name: "Munnar Escape",
+    days: 6,
     rating: 4.6,
-    overview: "Experience the vibrant city life, culture, and cuisine of Tokyo, Japan.",
+    overview: "Relax in the lush green hills of Munnar, Kerala, with tea gardens, waterfalls, and serene mountain air.",
   },
 ];
 
@@ -107,53 +88,57 @@ const StarRating = ({ rating }) => {
   );
 };
 
-const ItinerarySection = () => (
-  <section className="w-full bg-gray-50 py-16 px-4">
-    <div className="max-w-6xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">Popular Adventures</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {itineraries.map((item) => (
-          <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
-            <img src={item.image} alt={item.name} className="h-40 w-full object-cover" />
-            <div className="p-5 flex flex-col flex-1">
-              <h3 className="text-xl font-semibold text-blue-700 mb-1">{item.name}</h3>
-              <div className="flex items-center text-sm text-gray-500 mb-2">
-                <span className="mr-2">{item.days} days</span>
-                <StarRating rating={item.rating} />
-                <span className="ml-2">{item.rating}</span>
+const ItinerarySection = () => {
+  const navigate = useNavigate();
+  return (
+    <section className="w-full bg-gray-50 py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">Popular Adventures</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {itineraries.map((item) => (
+            <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+              <img src={item.image} alt={item.name} className="h-40 w-full object-cover" />
+              <div className="p-5 flex flex-col flex-1">
+                <h3 className="text-xl font-semibold text-blue-700 mb-1">{item.name}</h3>
+                <div className="flex items-center text-sm text-gray-500 mb-2">
+                  <span className="mr-2">{item.days} days</span>
+                  <StarRating rating={item.rating} />
+                  <span className="ml-2">{item.rating}</span>
+                </div>
+                <p className="text-gray-600 flex-1 mb-4">{item.overview}</p>
+                <button onClick={() => navigate("/trips")}
+                  className="mt-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">View More</button>
               </div>
-              <p className="text-gray-600 flex-1 mb-4">{item.overview}</p>
-              <button className="mt-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">View More</button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const gearProducts = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1514474959185-1472d4c4e1f0?auto=format&fit=crop&w=600&q=80",
+    image: BackpackImg,
     name: "Explorer Backpack",
     price: 89.99,
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+    image: TentImg,
     name: "All-Weather Tent",
     price: 129.99,
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3fd9?auto=format&fit=crop&w=600&q=80",
+    image: WaterBottleImg,
     name: "Insulated Water Bottle",
     price: 24.99,
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    image: TravelKitImg,
     name: "Travel Organizer Set",
     price: 34.99,
   },
@@ -239,9 +224,16 @@ const MissionSection = () => (
           ))}
         </div>
       </div>
-      {/* Right: Image */}
+      {/* Right: Video */}
       <div className="flex-1 flex justify-center">
-        <img src="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00366813_oxqk2c.jpg" alt="Travel app mockup" className="w-[320px] md:w-[400px] rounded-2xl shadow-2xl border border-gray-200" />
+        <video
+          src={WhyBackpackrVideo}
+          className="w-[400px] md:w-[600px] rounded-2xl shadow-2xl border border-gray-200"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
       </div>
     </div>
   </section>
